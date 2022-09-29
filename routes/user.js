@@ -12,16 +12,17 @@ router.get(
   })
 );
 
-// router.get("/login",passport.authenticate("google", {
-//     scope: ["profile"],
-//     successRedirect: process.env.FRONTEND_URL,
-// }))
+router.get("/login",
+    passport.authenticate("google", {
+      successRedirect: process.env.FRONTEND_URL,
+}))
 
-router.get("/login", passport.authenticate("google",{
-  successRedirect: process.env.FRONTEND_URL
-}), (req, res, next) => {
-  res.send("Login Successfully");
-});
+// router.get("/login", passport.authenticate("google",{
+//   successRedirect: process.env.FRONTEND_URL
+// }), (req, res, next) => {
+//   res.send("Login Successfully");
+// });
+
 router.get("/me", isAuthenticated, myProfile);
 router.get("/logout", logout);
 

@@ -33,11 +33,14 @@ app.use(express.json());
 app.use(urlencoded({
   extended: true,
 }));
-app.use(cors({
-  credentials: true,
-  origin: process.env.FRONTEND_URL,
-  methods: ["GET", "POST", "PUT", "DELETE"]
-}));
+
+const corsOptions ={
+    origin: process.env.FRONTEND_URL, 
+    credentials:true,            
+    optionSuccessStatus:200,
+    methods: ["GET", "POST", "PUT", "DELETE"]
+}
+app.use(cors(corsOptions));
 
 app.use(passport.authenticate("session"))
 app.use(passport.initialize())
